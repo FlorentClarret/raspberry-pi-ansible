@@ -1,0 +1,14 @@
+---
+
+- name: Update apt cache
+  apt: update_cache=yes
+
+- name: Upgrade all safe packages
+  apt: upgrade=safe
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: Perform rpi-update
+  command: /usr/bin/rpi-update
