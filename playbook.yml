@@ -2,7 +2,8 @@
 - name: Ansible Playbook to configure my Raspberry Pi
   hosts: servers
   roles:
-  - update
+  #- update
+  - user
   remote_user: pi
   become: true
 

@@ -1,0 +1,39 @@
+---
+
+- name: Install needed packages for the user
+  apt:
+    name: "{{ item }}"
+  loop:
+    - git
+    - most
+    - vim
+    - mc
+    - less
+    - screen
+    - glances
+
+- name: Create the repository folder
+  file:
+    path: ~/repositories
+    state: directory
+
+- name: Clone the configuration repositories
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.dest }}/{{ item.name }}"
+  loop:
+    - { name: 'home-configuration', url: 'https://github.com/FlorentClarret/home-configuration', dest: '~/repositories' }
+    - { name: 'home-tools', url: 'https://github.com/FlorentClarret/home-tools', dest: '~/repositories' }
+    - { name: 'raspberry-pi-ansible', url: 'https://github.com/FlorentClarret/raspberry-pi-ansible', dest: '~/repositories' }
+  become: yes
+  become_user: pi
+
+- name: Deploy home configuration
+  command: chdir=~/repositories/home-configuration/ bash install_home_configuration.bash
+  become: yes
+  become_user: pi
+
+- name: Add home configuration to bashrc
+  shell: grep 'source ~/.aliases/load.sh' ~/.bashrc || echo "source ~/.aliases/load.sh\n" >> ~/.bashrc
+  become: yes
+  become_user: pi
