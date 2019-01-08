@@ -4,6 +4,7 @@
   roles:
   - update
   - user
+  - monitor
   remote_user: pi
   become: true
 
