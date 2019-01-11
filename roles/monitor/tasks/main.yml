@@ -13,6 +13,11 @@
     backup: yes
     force: yes
 
+- name: Create collectd log folder
+  file:
+    path: /var/log/collectd/
+    state: directory
+
 - name: Enable collectd at boot
   systemd:
     name: collectd

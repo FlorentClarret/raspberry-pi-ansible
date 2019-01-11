@@ -59,16 +59,16 @@ FQDNLookup true
 # accessed.                                                                  #
 ##############################################################################
 
-#LoadPlugin logfile
+LoadPlugin logfile
 LoadPlugin syslog
 #LoadPlugin log_logstash
 
-#<Plugin logfile>
-#	LogLevel "info"
-#	File STDOUT
-#	Timestamp true
-#	PrintSeverity false
-#</Plugin>
+<Plugin logfile>
+	LogLevel "info"
+	File "/var/log/collectd/"
+	Timestamp true
+	PrintSeverity false
+</Plugin>
 
 <Plugin syslog>
 	LogLevel info
