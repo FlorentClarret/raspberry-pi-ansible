@@ -6,13 +6,12 @@
   loop:
   - collectd
 
-- name: Backup the previous collectd conf file
-  command: cp /etc/collectd/collectd.conf /etc/collectd/collectd.conf.backup
-
 - name: Deploy the collectd conf file
-  copy:
-    src: collectd.conf
+  template:
+    src: collectd.conf.j2
     dest: /etc/collectd/collectd.conf
+    backup: yes
+    force: yes
 
 - name: Enable collectd at boot
   systemd:
