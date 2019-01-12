@@ -5,6 +5,7 @@
   - update
   - user
   - monitor
+  - tools
   remote_user: "{{ user_name }}"
   become: true
 
