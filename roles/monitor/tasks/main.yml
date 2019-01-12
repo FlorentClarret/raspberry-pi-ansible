@@ -5,6 +5,7 @@
     name: "{{ item }}"
   loop:
   - collectd
+  - hddtemp
 
 - name: Deploy the collectd conf file
   template:
@@ -21,12 +22,18 @@
     path: /var/log/collectd/
     state: directory
 
-- name: Enable collectd at boot
+- name: Enable services at boot
   systemd:
-    name: collectd
+    name: "{{ item }}"
     enabled: yes
+  loop:
+  - hddtemp
+  - collectd
 
-- name: Restart collectd
+- name: Restart services
   systemd:
-    name: collectd
+    name: "{{ item }}"
     state: restarted
+  loop:
+  - hddtemp
+  - collectd
