@@ -6,6 +6,7 @@
   loop:
   - collectd
   - hddtemp
+  - smartmontools
 
 - name: Deploy the collectd conf file
   template:
@@ -29,6 +30,7 @@
   loop:
   - hddtemp
   - collectd
+  - smartmontools
 
 - name: Restart services
   systemd:
@@ -37,3 +39,4 @@
   loop:
   - hddtemp
   - collectd
+  - smartmontools
