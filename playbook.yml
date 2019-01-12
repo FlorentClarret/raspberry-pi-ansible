@@ -5,6 +5,6 @@
   - update
   - user
   - monitor
-  remote_user: pi
+  remote_user: "{{ user_name }}"
   become: true
 
