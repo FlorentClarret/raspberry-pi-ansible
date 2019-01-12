@@ -13,6 +13,9 @@
     backup: yes
     force: yes
 
+- name: Remove the old collectd conf backups
+  shell: find /etc/collectd/ -name collectd.conf.* -mtime +10 -type f -delete
+
 - name: Create collectd log folder
   file:
     path: /var/log/collectd/
