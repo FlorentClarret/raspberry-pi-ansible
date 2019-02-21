@@ -1,7 +1,5 @@
-pi:
-  hosts:
-    192.168.0.1:
-    192.168.0.2:
-  vars:
-    user_name: son_goku
-    influxdb_server_ip: '192.168.0.100'
+[pi]
+
+mythra
+pyra
+nia
