@@ -20,20 +20,32 @@
 - name: Clone the configuration repositories
   git:
     repo: "{{ item.url }}"
-    dest: "{{ item.dest }}/{{ item.name }}"
+    dest: "~/repositories/{{ item.name }}"
   loop:
-    - { name: 'home-configuration', url: 'https://github.com/FlorentClarret/home-configuration', dest: '~/repositories' }
-    - { name: 'home-tools', url: 'https://github.com/FlorentClarret/home-tools', dest: '~/repositories' }
-    - { name: 'raspberry-pi-ansible', url: 'https://github.com/FlorentClarret/raspberry-pi-ansible', dest: '~/repositories' }
+    - { name: 'home-configuration', url: 'https://github.com/FlorentClarret/home-configuration' }
+    - { name: 'home-tools', url: 'https://github.com/FlorentClarret/home-tools' }
+    - { name: 'raspberry-pi-ansible', url: 'https://github.com/FlorentClarret/raspberry-pi-ansible' }
   become: yes
-  become_user: pi
+  become_user: "{{ user_name }}"
 
 - name: Deploy home configuration
   command: chdir=~/repositories/home-configuration/ bash install_home_configuration.bash
   become: yes
-  become_user: pi
+  become_user: "{{ user_name }}"
 
 - name: Add home configuration to bashrc
   shell: grep 'source ~/.aliases/load.sh' ~/.bashrc || echo "source ~/.aliases/load.sh\n" >> ~/.bashrc
   become: yes
-  become_user: pi
+  become_user: "{{ user_name }}"
+
+- name: Make sur ssh folder exists
+  file:
+    path: /home/{{ user_name }}/.ssh
+    state: directory
+
+- name: Deploy ssh public key
+  authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+  become_user: "{{ user_name }}"
