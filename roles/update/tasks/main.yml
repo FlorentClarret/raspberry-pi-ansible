@@ -7,6 +7,9 @@
   apt:
     name: "squid-deb-proxy-client"
 
+- name: Update apt cache with the proxy
+  apt: update_cache=yes
+
 - name: Upgrade all safe packages
   apt: upgrade=safe
 
