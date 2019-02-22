@@ -29,5 +29,5 @@
     wait_for host={{ ansible_host }}
     port=22
     state=started
-    delay=10
+    delay=5
   become: false
