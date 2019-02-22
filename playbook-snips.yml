@@ -1,0 +1,12 @@
+---
+- name: Ansible Playbook to configure my Raspberry Pi
+  hosts: pi
+  roles:
+    - raspi-config
+    - update
+    - user
+    - monitor
+    - tools
+    - respeaker
+  become: true
+

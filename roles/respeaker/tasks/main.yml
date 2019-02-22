@@ -1,0 +1,34 @@
+---
+
+- name: Update apt cache with the proxy
+  apt: update_cache=yes
+
+- name: Upgrade all safe packages
+  apt: upgrade=safe
+
+- name: Clone the seed voicecard repository
+  git:
+    repo: "https://github.com/respeaker/seeed-voicecard.git"
+    dest: "~/repositories/respeaker/seeed-voicecard"
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Install seed voicecard
+  shell: /home/{{ user_name }}/repositories/respeaker/seeed-voicecard/install.sh
+
+- name: Enable SPI
+  shell: "raspi-config nonint do_spi 0"
+
+- name: Set audio out
+  shell: "raspi-config nonint do_audio 1" # Jack
+
+- name: Reboot the host
+  reboot:
+
+- name: Waiting for the host to come back
+  local_action:
+    wait_for host={{ ansible_host }}
+    port=22
+    state=started
+    delay=5
+  become: false
