@@ -42,6 +42,7 @@
   file:
     path: /home/{{ user_name }}/.ssh
     state: directory
+  become_user: "{{ user_name }}"
 
 - name: Deploy ssh public key
   authorized_key:
