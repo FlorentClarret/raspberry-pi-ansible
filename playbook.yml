@@ -4,6 +4,7 @@
   roles:
     - raspi-config
     - update
+    - firewall
     - user
     - monitor
     - tools
