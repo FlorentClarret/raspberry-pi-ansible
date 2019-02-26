@@ -1,5 +1,5 @@
 ---
-- name: Ansible Playbook to configure my Raspberry Pi
+- name: Ansible Playbook to configure my Raspberry Pi for Snips
   hosts: pi
   roles:
     - raspi-config
