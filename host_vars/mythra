@@ -1,0 +1,2 @@
+ansible_host: mythra
+ansible_port: 22

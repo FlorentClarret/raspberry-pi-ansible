@@ -1,0 +1,2 @@
+ansible_host: pyra
+ansible_port: 22
