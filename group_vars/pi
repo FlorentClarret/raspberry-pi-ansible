@@ -7,4 +7,3 @@ ansible_ssh_pass: raspberry
 
 # My variables
 user_name: pi
-influxdb_server_ip: '10.0.0.200'

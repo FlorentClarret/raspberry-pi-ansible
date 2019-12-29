@@ -10,7 +10,7 @@
     - mc
     - less
     - screen
-    - glances
+    - tmux
 
 - name: Create the repository folder
   file:
@@ -23,8 +23,6 @@
     dest: "~/repositories/{{ item.name }}"
   loop:
     - { name: 'home-configuration', url: 'https://github.com/FlorentClarret/home-configuration' }
-    - { name: 'home-tools', url: 'https://github.com/FlorentClarret/home-tools' }
-    - { name: 'raspberry-pi-ansible', url: 'https://github.com/FlorentClarret/raspberry-pi-ansible' }
   become: yes
   become_user: "{{ user_name }}"
 

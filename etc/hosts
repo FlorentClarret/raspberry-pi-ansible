@@ -1,5 +1,3 @@
 [pi]
 
-mythra
-pyra
-nia
+pyra ansible_host=10.0.5.101

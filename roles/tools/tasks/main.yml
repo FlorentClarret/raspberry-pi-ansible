@@ -1,7 +1,0 @@
----
-
-- name: Install various tools
-  apt:
-    name: "{{ item }}"
-  loop:
-  - telnet

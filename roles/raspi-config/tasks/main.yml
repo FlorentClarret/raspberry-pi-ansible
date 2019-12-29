@@ -9,17 +9,11 @@
 - name: Change timezone
   shell: "raspi-config nonint do_change_timezone Europe/Paris"
 
-- name: Enable SPI
-  shell: "raspi-config nonint do_spi 0"
-
 - name: Expand Filesystem
   shell: "raspi-config nonint do_expand_rootfs"
 
 - name: Set GPU memory split
   shell: "raspi-config nonint do_memory_split 16"
-
-- name: Set audio out
-  shell: "raspi-config nonint do_audio 1" # Jack
 
 - name: Reboot the host
   reboot:
