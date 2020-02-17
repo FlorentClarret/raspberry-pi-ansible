@@ -17,6 +17,7 @@
 
 - name: Reboot the host
   reboot:
+    search_paths: ['/lib/molly-guard', '/sbin']
 
 - name: Waiting for the host to come back
   local_action:
