@@ -11,6 +11,7 @@
     - less
     - screen
     - tmux
+    - molly-guard
 
 - name: Create the repository folder
   file:
