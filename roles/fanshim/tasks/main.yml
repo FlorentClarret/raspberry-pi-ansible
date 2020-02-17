@@ -1,0 +1,22 @@
+---
+
+- name: Install dependencies for fanshim tools
+  apt:
+    name: "{{ item }}"
+  loop:
+    - python3-pip
+
+- name: Clone the fanshim tools repository
+  git:
+    repo: "https://github.com/pimoroni/fanshim-python"
+    dest: "/tmp/fanshim"
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Configure the fans
+  shell: /tmp/fanshim/examples/install-service.sh --on-threshold 65 --off-threshold 55 --delay 2
+
+- name: Remove the repository
+  file:
+    path: /tmp/fanshim
+    state: absent

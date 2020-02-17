@@ -5,8 +5,7 @@
     - raspi-config
     - update
     - firewall
+    - ssh
     - user
-    - monitor
-    - tools
+    - fanshim
   become: true
-
